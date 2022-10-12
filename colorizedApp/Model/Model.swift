@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+
+struct Color {
+    
+    var redValue: Float = 0.00
+    var greenValue: Float = 0.00
+    var blueValue: Float = 0.00
+    
+}

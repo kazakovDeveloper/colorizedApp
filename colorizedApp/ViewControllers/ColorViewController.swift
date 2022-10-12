@@ -8,22 +8,21 @@
 import UIKit
 
 class ColorViewController: UIViewController {
+    
+    var color = Color()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        fillViewBackGround(red: color.redValue, green: color.greenValue, blue: color.blueValue)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        guard let colorVC = segue.destination as? SettingsViewController else { return }
+        colorVC.delegate = self
     }
-    */
+    
+    @IBAction func settingsButton(_ sender: Any) {
+        performSegue(withIdentifier: "settingsVC", sender: nil)
+    }
 
 }

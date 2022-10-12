@@ -7,10 +7,15 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+protocol SettingsViewControllerDelegate {
+    func fillViewBackGround(red: Float, green: Float, blue: Float)
+}
 
-    private var color = Color()
+class SettingsViewController: UIViewController {
     
+    private var color = Color(redValue: 0.0, greenValue: 0.0, blueValue: 0.0)
+    
+    var delegate: SettingsViewControllerDelegate!
     
     @IBOutlet var viewOutlet: UIView!
     
@@ -24,75 +29,70 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-        redSliderSetup()
-        greenSliderSetup()
-        blueSliderSetup()
-    }
-    
-    private func setupView() {
         viewOutlet.layer.cornerRadius = 20
-    }
-    
-    private func redSliderSetup() {
-        redSlider.minimumTrackTintColor = .red
-        redSlider.minimumValue = 0.01
-        redSlider.maximumValue = 1.0
-    }
-    
-    private func greenSliderSetup() {
-        greenSlider.minimumTrackTintColor = .green
-        greenSlider.minimumValue = 0.01
-        greenSlider.maximumValue = 1.0
+        
+        sliderSet(slider: redSlider, color: .red, minimumValue: 0.00, maximumValue: 1.00)
+        sliderSet(slider: greenSlider, color: .green, minimumValue: 0.00, maximumValue: 1.00)
+        sliderSet(slider: blueSlider, color: .blue, minimumValue: 0.00, maximumValue: 1.00)
         
     }
-    private func blueSliderSetup() {
-        blueSlider.minimumTrackTintColor = .blue
-        blueSlider.minimumValue = 0.01
-        blueSlider.maximumValue = 1.0
+    
+    @IBAction func unwind(for segue: UIStoryboardSegue) {
+        guard segue.source is ColorViewController else { return }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let colorVC = segue.source as? ColorViewController else { return }
-        colorVC.color = Color(redValue: color.redValue, greenValue: color.greenValue, blueValue: color.blueValue)
+    @IBAction func sliderAction(_ sender: UISlider) {
+        switch sender {
+        case redSlider:
+            color.redValue = Float(round(sender.value * 100) / 100.0)
+            redLabel.text = String(round(color.redValue * 100) / 100.0)
+            delegate?.fillViewBackGround(red: color.redValue, green: color.greenValue, blue: color.blueValue)
+            viewOutlet.backgroundColor = UIColor(
+                red: CGFloat(color.redValue),
+                green: CGFloat(color.greenValue),
+                blue: CGFloat(color.blueValue),
+                alpha: 1
+        )
+        case greenSlider:
+            color.greenValue = Float(round(sender.value * 100) / 100.0)
+            greenLabel.text = String(round(color.greenValue * 100) / 100.0)
+            delegate?.fillViewBackGround(red: color.redValue, green: color.greenValue, blue: color.blueValue)
+            viewOutlet.backgroundColor = UIColor(
+                red: CGFloat(color.redValue),
+                green: CGFloat(color.greenValue),
+                blue: CGFloat(color.blueValue),
+                alpha: 1
+        )
+        case blueSlider:
+            color.blueValue = Float(round(sender.value * 100) / 100.0)
+            blueLabel.text = String(round(color.blueValue * 100) / 100.0)
+            delegate?.fillViewBackGround(red: color.redValue, green: color.greenValue, blue: color.blueValue)
+            viewOutlet.backgroundColor = UIColor(
+                red: CGFloat(color.redValue),
+                green: CGFloat(color.greenValue),
+                blue: CGFloat(color.blueValue),
+                alpha: 1
+        )
+        default:
+            print("Hello, world")
+        }
+        
     }
     
-    @IBAction func doneButton() {
-        performSegue(withIdentifier: "colorVC", sender: nil)
+    func sliderSet(slider: UISlider, color: UIColor, minimumValue: Float, maximumValue: Float) {
+        slider.minimumTrackTintColor = color
+        slider.minimumValue = minimumValue
+        slider.maximumValue = maximumValue
     }
     
-    @IBAction func redSliderAction(_ sender: UISlider) {
-        redLabel.text = String(round(redSlider.value * 100) / 100.0)
-        color.redValue = Float(round(redSlider.value * 100) / 100.0)
-        viewOutlet.backgroundColor = UIColor(
-            red: CGFloat(color.redValue),
-            green: CGFloat(color.greenValue),
-            blue: CGFloat(color.blueValue),
-            alpha: 1
-    )
-    }
-    
-    @IBAction func greenSliderAction(_ sender: UISlider) {
-        greenLabel.text = String(round(greenSlider.value * 100) / 100.0)
-        color.greenValue = Float(round(greenSlider.value * 100) / 100.0)
-        viewOutlet.backgroundColor = UIColor(
-            red: CGFloat(color.redValue),
-            green: CGFloat(color.greenValue),
-            blue: CGFloat(color.blueValue),
-            alpha: 1
-    )
-    }
-    
-    @IBAction func blueSliderAction(_ sender: UISlider) {
-        blueLabel.text = String(round(blueSlider.value * 100) / 100.0)
-        color.blueValue = Float(round(blueSlider.value * 100) / 100.0)
-        viewOutlet.backgroundColor = UIColor(
-            red: CGFloat(color.redValue),
-            green: CGFloat(color.greenValue),
-            blue: CGFloat(color.blueValue),
-            alpha: 1
-    )
-    }
-
 }
 
+extension ColorViewController: SettingsViewControllerDelegate {
+    func fillViewBackGround(red: Float, green: Float, blue: Float) {
+        view.backgroundColor = UIColor(
+            red: CGFloat(red),
+            green: CGFloat(green),
+            blue: CGFloat(blue),
+            alpha: 1)
+    }
+}
