@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SettingsViewController.swift
 //  colorizedApp
 //
 //  Created by Kazakov Danil on 23.09.2022.
@@ -7,19 +7,16 @@
 
 import UIKit
 
-    var redValue: Float = 0.00
-    var greenValue: Float = 0.00
-    var blueValue: Float = 0.00
-    
-class ViewController: UIViewController {
+class SettingsViewController: UIViewController {
 
+    private var color = Color()
+    
+    
     @IBOutlet var viewOutlet: UIView!
     
     @IBOutlet var redLabel: UILabel!
     @IBOutlet var greenLabel: UILabel!
     @IBOutlet var blueLabel: UILabel!
-    
-    
     
     @IBOutlet var redSlider: UISlider!
     @IBOutlet var greenSlider: UISlider!
@@ -54,37 +51,45 @@ class ViewController: UIViewController {
         blueSlider.minimumValue = 0.01
         blueSlider.maximumValue = 1.0
     }
-
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let colorVC = segue.source as? ColorViewController else { return }
+        colorVC.color = Color(redValue: color.redValue, greenValue: color.greenValue, blueValue: color.blueValue)
+    }
+    
+    @IBAction func doneButton() {
+        performSegue(withIdentifier: "colorVC", sender: nil)
+    }
+    
     @IBAction func redSliderAction(_ sender: UISlider) {
         redLabel.text = String(round(redSlider.value * 100) / 100.0)
-        redValue = Float(round(redSlider.value * 100) / 100.0)
+        color.redValue = Float(round(redSlider.value * 100) / 100.0)
         viewOutlet.backgroundColor = UIColor(
-            red: CGFloat(redValue),
-            green: CGFloat(greenValue),
-            blue: CGFloat(blueValue),
+            red: CGFloat(color.redValue),
+            green: CGFloat(color.greenValue),
+            blue: CGFloat(color.blueValue),
             alpha: 1
     )
     }
     
     @IBAction func greenSliderAction(_ sender: UISlider) {
         greenLabel.text = String(round(greenSlider.value * 100) / 100.0)
-        greenValue = Float(round(greenSlider.value * 100) / 100.0)
+        color.greenValue = Float(round(greenSlider.value * 100) / 100.0)
         viewOutlet.backgroundColor = UIColor(
-            red: CGFloat(redValue),
-            green: CGFloat(greenValue),
-            blue: CGFloat(blueValue),
+            red: CGFloat(color.redValue),
+            green: CGFloat(color.greenValue),
+            blue: CGFloat(color.blueValue),
             alpha: 1
     )
     }
     
     @IBAction func blueSliderAction(_ sender: UISlider) {
         blueLabel.text = String(round(blueSlider.value * 100) / 100.0)
-        blueValue = Float(round(blueSlider.value * 100) / 100.0)
+        color.blueValue = Float(round(blueSlider.value * 100) / 100.0)
         viewOutlet.backgroundColor = UIColor(
-            red: CGFloat(redValue),
-            green: CGFloat(greenValue),
-            blue: CGFloat(blueValue),
+            red: CGFloat(color.redValue),
+            green: CGFloat(color.greenValue),
+            blue: CGFloat(color.blueValue),
             alpha: 1
     )
     }
