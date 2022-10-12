@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol SettingsViewControllerDelegate {
-    func fillViewBackGround()
-}
-
 class SettingsViewController: UIViewController {
     
     var color: UIColor!
@@ -37,10 +33,10 @@ class SettingsViewController: UIViewController {
         sliderSet(slider: redSlider, color: .red, minimumValue: 0.00, maximumValue: 1.00)
         sliderSet(slider: greenSlider, color: .green, minimumValue: 0.00, maximumValue: 1.00)
         sliderSet(slider: blueSlider, color: .blue, minimumValue: 0.00, maximumValue: 1.00)
-        
     }
     
     @IBAction func setColorAction(_ sender: UIButton) {
+        delegate?.fillViewBackGround(viewOutlet.backgroundColor ?? .black)
         dismiss(animated: true)
     }
     
@@ -81,11 +77,4 @@ class SettingsViewController: UIViewController {
                                              alpha: 1)
     }
     
-}
-
-
-extension ColorViewController: SettingsViewControllerDelegate {
-    func fillViewBackGround() {
-        
-    }
 }

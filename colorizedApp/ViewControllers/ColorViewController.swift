@@ -7,15 +7,21 @@
 
 import UIKit
 
+protocol SettingsViewControllerDelegate {
+    func fillViewBackGround(_ color: UIColor)
+}
+
 class ColorViewController: UIViewController {
-    
-    
+        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        guard let navigationVC = segue.destination as? UINavigationController else { return }
         guard let settingsVC = segue.destination as? SettingsViewController else { return }
-        settingsVC.color = view.backgroundColor
         settingsVC.delegate = self
+        settingsVC.color = color
     }
     
     @IBAction func settingsButton(_ sender: Any) {
@@ -23,4 +29,9 @@ class ColorViewController: UIViewController {
     }
     
 
+}
+extension ColorViewController: SettingsViewControllerDelegate {
+    func fillViewBackGround(_ color: UIColor) {
+        view.backgroundColor = color
+    }
 }
