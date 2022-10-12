@@ -34,8 +34,6 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         viewOutlet.layer.cornerRadius = 20
         
-        view.backgroundColor = color
-        
         sliderSet(slider: redSlider, color: .red, minimumValue: 0.00, maximumValue: 1.00)
         sliderSet(slider: greenSlider, color: .green, minimumValue: 0.00, maximumValue: 1.00)
         sliderSet(slider: blueSlider, color: .blue, minimumValue: 0.00, maximumValue: 1.00)
