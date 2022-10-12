@@ -25,7 +25,10 @@ class ColorViewController: UIViewController {
     
     @IBAction func settingsButton(_ sender: Any) {
         performSegue(withIdentifier: "settingsVC", sender: nil)
+        
     }
+    
+    
     
 
 }
@@ -33,4 +36,5 @@ extension ColorViewController: SettingsViewControllerDelegate {
     func fillViewBackGround(_ color: UIColor) {
         view.backgroundColor = color
     }
+    
 }

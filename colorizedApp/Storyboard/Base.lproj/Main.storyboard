@@ -86,18 +86,21 @@
                                                         <subviews>
                                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="bK0-Fw-j87">
                                                                 <rect key="frame" x="-2" y="0.0" width="224.33333333333334" height="31"/>
+                                                                <color key="minimumTrackTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <connections>
                                                                     <action selector="sliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="066-bA-TDq"/>
                                                                 </connections>
                                                             </slider>
                                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="fHE-cw-nRN">
                                                                 <rect key="frame" x="-2" y="35" width="224.33333333333334" height="31"/>
+                                                                <color key="minimumTrackTintColor" systemColor="systemGreenColor"/>
                                                                 <connections>
                                                                     <action selector="sliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="LQE-sI-vex"/>
                                                                 </connections>
                                                             </slider>
                                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="DO2-HG-wF0">
                                                                 <rect key="frame" x="-2" y="70" width="224.33333333333334" height="31"/>
+                                                                <color key="minimumTrackTintColor" systemColor="systemBlueColor"/>
                                                                 <connections>
                                                                     <action selector="sliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="1JO-dw-Ci2"/>
                                                                 </connections>
@@ -110,28 +113,28 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="j4a-93-ZSx">
                                                         <rect key="frame" x="302.66666666666669" y="0.0" width="55.333333333333314" height="112"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.99" borderStyle="roundedRect" placeholder="0.99" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cK9-XR-Pwe">
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0.00" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cK9-XR-Pwe">
                                                                 <rect key="frame" x="0.0" y="0.0" width="55.333333333333336" height="34"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="sBs-Uj-Hik"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.99" borderStyle="roundedRect" placeholder="0.99" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="am5-jg-wh7">
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0.00" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="am5-jg-wh7">
                                                                 <rect key="frame" x="0.0" y="39" width="55.333333333333336" height="34"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="hTL-AG-YC8"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.99" borderStyle="roundedRect" placeholder="0.99" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ekN-ZC-0Mj">
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0.00" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ekN-ZC-0Mj">
                                                                 <rect key="frame" x="0.0" y="78" width="55.333333333333336" height="34"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="55.333333333333336" id="P5H-3i-zN7"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                         </subviews>
@@ -228,6 +231,12 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

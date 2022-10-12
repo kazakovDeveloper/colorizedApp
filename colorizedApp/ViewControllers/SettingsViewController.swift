@@ -30,9 +30,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         viewOutlet.layer.cornerRadius = 20
         
-        sliderSet(slider: redSlider, color: .red, minimumValue: 0.00, maximumValue: 1.00)
-        sliderSet(slider: greenSlider, color: .green, minimumValue: 0.00, maximumValue: 1.00)
-        sliderSet(slider: blueSlider, color: .blue, minimumValue: 0.00, maximumValue: 1.00)
+        setValueForSliders()
     }
     
     @IBAction func setColorAction(_ sender: UIButton) {
@@ -58,10 +56,17 @@ class SettingsViewController: UIViewController {
         
     }
     
-    private func sliderSet(slider: UISlider, color: UIColor, minimumValue: Float, maximumValue: Float) {
-        slider.minimumTrackTintColor = color
-        slider.minimumValue = minimumValue
-        slider.maximumValue = maximumValue
+    private func setValueForSliders() {
+        let ciColor = CIColor(color: color!)
+
+        redSlider.value = Float(ciColor.red)
+        greenSlider.value = Float(ciColor.green)
+        blueSlider.value = Float(ciColor.blue)
+        
+        setValueFor(colorTextField: redTextField, colorLabel: redLabel, slider: redSlider)
+        setValueFor(colorTextField: greenTextField, colorLabel: greenLabel, slider: greenSlider)
+        setValueFor(colorTextField: blueTextField, colorLabel: blueLabel, slider: blueSlider)
+        
     }
     
     private func setValueFor(colorTextField: UITextField, colorLabel: UILabel, slider: UISlider) {
