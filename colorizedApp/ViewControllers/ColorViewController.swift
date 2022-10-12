@@ -9,20 +9,17 @@ import UIKit
 
 class ColorViewController: UIViewController {
     
-    var color = Color()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        fillViewBackGround(red: color.redValue, green: color.greenValue, blue: color.blueValue)
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let colorVC = segue.destination as? SettingsViewController else { return }
-        colorVC.delegate = self
+        guard let navigationVC = segue.destination as? UINavigationController else { return }
+        guard let settingsVC = navigationVC.topViewController as? SettingsViewController else { return }
+        settingsVC.delegate = self
+        settingsVC.color = view.backgroundColor
     }
     
     @IBAction func settingsButton(_ sender: Any) {
         performSegue(withIdentifier: "settingsVC", sender: nil)
     }
+    
 
 }

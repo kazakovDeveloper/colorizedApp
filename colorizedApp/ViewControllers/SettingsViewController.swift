@@ -8,13 +8,12 @@
 import UIKit
 
 protocol SettingsViewControllerDelegate {
-    func fillViewBackGround(red: Float, green: Float, blue: Float)
+    func fillViewBackGround()
 }
 
 class SettingsViewController: UIViewController {
     
-    private var color = Color(redValue: 0.0, greenValue: 0.0, blueValue: 0.0)
-    
+    var color: UIColor!
     var delegate: SettingsViewControllerDelegate!
     
     @IBOutlet var viewOutlet: UIView!
@@ -27,9 +26,15 @@ class SettingsViewController: UIViewController {
     @IBOutlet var greenSlider: UISlider!
     @IBOutlet var blueSlider: UISlider!
     
+    @IBOutlet var redTextField: UITextField!
+    @IBOutlet var greenTextField: UITextField!
+    @IBOutlet var blueTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewOutlet.layer.cornerRadius = 20
+        
+        view.backgroundColor = color
         
         sliderSet(slider: redSlider, color: .red, minimumValue: 0.00, maximumValue: 1.00)
         sliderSet(slider: greenSlider, color: .green, minimumValue: 0.00, maximumValue: 1.00)
@@ -37,62 +42,52 @@ class SettingsViewController: UIViewController {
         
     }
     
-    @IBAction func unwind(for segue: UIStoryboardSegue) {
-        guard segue.source is ColorViewController else { return }
+    @IBAction func setColorAction(_ sender: UIButton) {
+        dismiss(animated: true)
     }
     
     @IBAction func sliderAction(_ sender: UISlider) {
         switch sender {
         case redSlider:
-            color.redValue = Float(round(sender.value * 100) / 100.0)
-            redLabel.text = String(round(color.redValue * 100) / 100.0)
-            delegate?.fillViewBackGround(red: color.redValue, green: color.greenValue, blue: color.blueValue)
-            viewOutlet.backgroundColor = UIColor(
-                red: CGFloat(color.redValue),
-                green: CGFloat(color.greenValue),
-                blue: CGFloat(color.blueValue),
-                alpha: 1
-        )
+            redSlider.value = Float(round(sender.value * 100) / 100.0)
+            setValueFor(colorTextField: redTextField, colorLabel: redLabel, slider: redSlider)
         case greenSlider:
-            color.greenValue = Float(round(sender.value * 100) / 100.0)
-            greenLabel.text = String(round(color.greenValue * 100) / 100.0)
-            delegate?.fillViewBackGround(red: color.redValue, green: color.greenValue, blue: color.blueValue)
-            viewOutlet.backgroundColor = UIColor(
-                red: CGFloat(color.redValue),
-                green: CGFloat(color.greenValue),
-                blue: CGFloat(color.blueValue),
-                alpha: 1
-        )
+            greenSlider.value = Float(round(sender.value * 100) / 100.0)
+            setValueFor(colorTextField: greenTextField, colorLabel: greenLabel, slider: greenSlider)
         case blueSlider:
-            color.blueValue = Float(round(sender.value * 100) / 100.0)
-            blueLabel.text = String(round(color.blueValue * 100) / 100.0)
-            delegate?.fillViewBackGround(red: color.redValue, green: color.greenValue, blue: color.blueValue)
-            viewOutlet.backgroundColor = UIColor(
-                red: CGFloat(color.redValue),
-                green: CGFloat(color.greenValue),
-                blue: CGFloat(color.blueValue),
-                alpha: 1
-        )
+            blueSlider.value = Float(round(sender.value * 100) / 100.0)
+            setValueFor(colorTextField: blueTextField, colorLabel: blueLabel, slider: blueSlider)
         default:
-            print("Hello, world")
+            break
         }
+        setColor()
         
     }
     
-    func sliderSet(slider: UISlider, color: UIColor, minimumValue: Float, maximumValue: Float) {
+    private func sliderSet(slider: UISlider, color: UIColor, minimumValue: Float, maximumValue: Float) {
         slider.minimumTrackTintColor = color
         slider.minimumValue = minimumValue
         slider.maximumValue = maximumValue
     }
     
+    private func setValueFor(colorTextField: UITextField, colorLabel: UILabel, slider: UISlider) {
+        colorTextField.text = String(slider.value)
+        colorLabel.text = String(slider.value)
+        
+    }
+    
+    private func setColor() {
+        viewOutlet.backgroundColor = UIColor(red: CGFloat(redSlider.value),
+                                             green: CGFloat(greenSlider.value),
+                                             blue: CGFloat(blueSlider.value),
+                                             alpha: 1)
+    }
+    
 }
 
+
 extension ColorViewController: SettingsViewControllerDelegate {
-    func fillViewBackGround(red: Float, green: Float, blue: Float) {
-        view.backgroundColor = UIColor(
-            red: CGFloat(red),
-            green: CGFloat(green),
-            blue: CGFloat(blue),
-            alpha: 1)
+    func fillViewBackGround() {
+        
     }
 }

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		97AB3FAE28F5CA0400F4A6FF /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AB3FAD28F5CA0400F4A6FF /* Model.swift */; };
 		97AB3FB428F5CB3600F4A6FF /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AB3FB328F5CB3600F4A6FF /* ColorViewController.swift */; };
 		97DDE67328DE1B9500690B71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DDE67228DE1B9500690B71 /* AppDelegate.swift */; };
 		97DDE67528DE1B9500690B71 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DDE67428DE1B9500690B71 /* SceneDelegate.swift */; };
@@ -18,7 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		97AB3FAD28F5CA0400F4A6FF /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		97AB3FB328F5CB3600F4A6FF /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 		97DDE66F28DE1B9500690B71 /* colorizedApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = colorizedApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97DDE67228DE1B9500690B71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,7 +61,6 @@
 		97AB3FB128F5CA3C00F4A6FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				97AB3FAD28F5CA0400F4A6FF /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,7 +177,6 @@
 				97DDE67328DE1B9500690B71 /* AppDelegate.swift in Sources */,
 				97DDE67528DE1B9500690B71 /* SceneDelegate.swift in Sources */,
 				97AB3FB428F5CB3600F4A6FF /* ColorViewController.swift in Sources */,
-				97AB3FAE28F5CA0400F4A6FF /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
