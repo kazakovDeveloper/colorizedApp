@@ -31,9 +31,14 @@ class SettingsViewController: UIViewController {
         viewOutlet.layer.cornerRadius = 20
         
         setValueForSliders()
+        redTextField.delegate = self
+        greenTextField.delegate = self
+        blueTextField.delegate = self
+        
     }
     
     @IBAction func setColorAction(_ sender: UIButton) {
+        view.endEditing(true)
         delegate?.fillViewBackGround(viewOutlet.backgroundColor ?? .black)
         dismiss(animated: true)
     }
@@ -67,6 +72,7 @@ class SettingsViewController: UIViewController {
         setValueFor(colorTextField: greenTextField, colorLabel: greenLabel, slider: greenSlider)
         setValueFor(colorTextField: blueTextField, colorLabel: blueLabel, slider: blueSlider)
         
+        setColor()
     }
     
     private func setValueFor(colorTextField: UITextField, colorLabel: UILabel, slider: UISlider) {
@@ -83,3 +89,24 @@ class SettingsViewController: UIViewController {
     }
     
 }
+
+extension SettingsViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == redTextField {
+            redLabel.text = textField.text
+            redSlider.value = Float(textField.text!) ?? 0.00
+            setColor()
+        } else if textField == greenTextField {
+            greenLabel.text = textField.text
+            greenSlider.value = Float(textField.text!) ?? 0.00
+            setColor()
+        } else if textField == blueTextField {
+            blueLabel.text = textField.text
+            blueSlider.value = Float(textField.text!) ?? 0.00
+            setColor()
+        }
+        
+}
+    
+}
+
